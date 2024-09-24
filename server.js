@@ -28,6 +28,7 @@ mongoose.connect(process.env.MONGOURL)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const port = process.env.PORT || 3001;
 // Routes
 app.use("/", AuthRoute);
 app.use("/api/users", UserRoute);
