@@ -20,7 +20,7 @@ dotenv.config();
 fireBaseConnection();
 
 // MongoDB connection
-mongoose.connect(process.env.MONGOURL)
+mongoose.connect(process.env.MONGO_URL)
   .then(() => console.log("EatsEasy Database Connected"))
   .catch((err) => console.log(err));
 
