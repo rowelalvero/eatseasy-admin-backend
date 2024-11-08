@@ -37,7 +37,7 @@ module.exports = {
     getRestaurantById: async (req, res) => {
         const id = req.params.id;
         try {
-            const data = await Restaurant.findById(id, {coords: 0});
+            const data = await Restaurant.findById(id);
             
             const ordersTotal = await Order.countDocuments({ restaurantId: id, orderStatus: "Delivered" });
             const cancelledOrders = await Order.countDocuments({ restaurantId: id, orderStatus: "Cancelled" });

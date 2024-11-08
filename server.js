@@ -53,5 +53,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(process.env.PORT || 6013, () =>
-  console.log(`Foodly Backend is running on ${process.env.PORT || 6013}!`)
+  console.log(`Eatseasy Backend is running on ${process.env.PORT || 6013}!`)
 );
