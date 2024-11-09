@@ -59,7 +59,7 @@ module.exports = {
         },
 
     deleteCategory: async (req, res) => {
-            const id  = req.params;
+            const { id } = req.params;
 
             if (!id) {
                 return res.status(400).json({ status: false, message: 'Category ID is required for deletion.' });
