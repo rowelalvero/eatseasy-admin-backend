@@ -47,7 +47,7 @@ module.exports = {
             const drivers = await Driver.find(query, {createdAt: 0, updatedAt: 0, __v: 0})
                 .populate(
                     'driver',
-                    'fcm'
+                    'fcm username'
                 )
                 .sort({ createdAt: -1 })
                 .skip((page - 1) * ITEMS_PER_PAGE)
