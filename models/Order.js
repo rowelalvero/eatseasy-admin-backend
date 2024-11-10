@@ -5,7 +5,6 @@ const orderItemSchema = new mongoose.Schema({
     quantity: { type: Number, required: true },
     price: { type: Number, required: true },
     unitPrice:{type:Number, default: 0},
-    additives: { type: Array },
     instructions: {type: String, default: ''},
     cartItemId: { type: mongoose.Schema.Types.ObjectId, ref: "Cart" },
     customAdditives: { type: Map, of: mongoose.Schema.Types.Mixed }, // Update here
