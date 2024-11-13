@@ -25,7 +25,7 @@ mongoose.connect(process.env.MONGO_URL)
 const app = express();
 
 const corsOptions = {
-  origin: process.env.ALLOWED_ORIGIN || '*',
+  origin: ['https://admin.eatseasy.online', 'https://eatseasy-admin.web.app'],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
