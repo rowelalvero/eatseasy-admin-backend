@@ -105,46 +105,46 @@ module.exports = {
     },
 
     changeStatus: async (req, res) => {
-        const id = req.params.id;
-        let status = req.query.status;
-        try {
-            const restaurant = await Restaurant.findById(id);
-            restaurant.verification = status;
-            await restaurant.save();
+            const id = req.params.id;
+            let status = req.query.status;
+            try {
+                const restaurant = await Restaurant.findById(id);
+                restaurant.verification = status;
+                await restaurant.save();
 
-            const restaurantData = await User.findById(restaurant.owner, {fcm: 1, email: 1, username: 1});
+                const restaurantData = await User.findById(restaurant.owner, {fcm: 1, email: 1, username: 1});
 
-            
 
-            if(restaurantData.email){
-                if(status == "Verified"){
-                    // if(restaurantData.fcm != "none"){
-                    //     let data = {
-                    //         "type": "verification",
-                    //         "message": "Your restaurant has been verified"
-                    //     }
-                    //     sendPushNotification(restaurantData.fcm, "Restaurant Verification","Your restaurant has been verified",data, "Your restaurant has been verified") 
-                    // }
-                    sendMail(restaurantData.email, restaurantData.username);
-                }else if (status = "Rejected"){
 
-                    // if(restaurantData.fcm != "none"){
-                    //     let data = {
-                    //         "type": "verification",
-                    //         "message": "Your restaurant has been verified"
-                    //     }
-                    //     sendPushNotification(restaurantData.fcm, "Restaurant Verification","Your restaurant has been rejected",data, "Your restaurant has been rejected",)
-                    // }
-                    rejectionEmail(restaurantData.email, restaurantData.username);
+                if(restaurantData.email){
+                    if(status == "Verified"){
+                        // if(restaurantData.fcm != "none"){
+                        //     let data = {
+                        //         "type": "verification",
+                        //         "message": "Your restaurant has been verified"
+                        //     }
+                        //     sendPushNotification(restaurantData.fcm, "Restaurant Verification","Your restaurant has been verified",data, "Your restaurant has been verified")
+                        // }
+                        sendMail(restaurantData.email, restaurantData.username);
+                    }else if (status = "Rejected"){
+
+                        // if(restaurantData.fcm != "none"){
+                        //     let data = {
+                        //         "type": "verification",
+                        //         "message": "Your restaurant has been verified"
+                        //     }
+                        //     sendPushNotification(restaurantData.fcm, "Restaurant Verification","Your restaurant has been rejected",data, "Your restaurant has been rejected",)
+                        // }
+                        rejectionEmail(restaurantData.email, restaurantData.username);
+                    }
+
                 }
-              
-            }
 
-            res.status(200).json({ status: true, message: "Status changed successfully" });
-        } catch (error) {
-            res.status(500).json({ status: false, message: error.message });
-        }
-    },
+                res.status(200).json({ status: true, message: "Status changed successfully" });
+            } catch (error) {
+                res.status(500).json({ status: false, message: error.message });
+            }
+        },
 
     deleteRestaurant: async (req, res) => {
         const id  = req.params;
