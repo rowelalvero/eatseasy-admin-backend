@@ -19,7 +19,7 @@ module.exports = {
 
             const totalItems = await Restaurant.countDocuments(query);
 
-            const restaurants = await Restaurant.find(query, {logoUrl: 1,title:1, isAvailable: 1,ratingCount: 0, rating: 0, time: 1, coords: 1 })
+            const restaurants = await Restaurant.find(query, {logoUrl: 1,title:1, isAvailable: 1,ratingCount: 1, rating: 1, time: 1, coords: 1 })
                 .sort({ createdAt: -1 })
                 .skip((page - 1) * ITEMS_PER_PAGE)
                 .limit(ITEMS_PER_PAGE);
