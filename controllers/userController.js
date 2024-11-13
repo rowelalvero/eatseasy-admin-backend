@@ -96,7 +96,7 @@ module.exports = {
                 .limit(ITEMS_PER_PAGE);
             const totalItems = await User.countDocuments({verification: req.query.status});
             res.status(200).json({
-                users,
+                users: clients,
                 currentPage: +page,
                 totalPages: Math.ceil(totalItems / ITEMS_PER_PAGE),
             });
