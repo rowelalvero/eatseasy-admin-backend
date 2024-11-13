@@ -8,5 +8,6 @@ router.get("/search/:search", restaurantController.searchRestaurants);
 router.get("/", restaurantController.getRestaurants);
 router.delete("/:id", restaurantController.deleteRestaurant);
 router.put("/status/:id",verifyAdmin, restaurantController.changeStatus);
+router.get("/total-earnings", restaurantController.getTotalEarnings);
 
 module.exports = router;

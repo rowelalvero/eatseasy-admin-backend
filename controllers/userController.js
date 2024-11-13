@@ -13,30 +13,6 @@ module.exports = {
         }
     },
 
-    getClients: async (req, res) => {
-            const { page = 1 } = req.query;
-            const ITEMS_PER_PAGE = req.query.limit || 8;
-            try {
-                const clients = await User.find(
-                    { userType: "Client" },
-                    { __v: 0, createdAt: 0, updatedAt: 0, password: 0 }
-                )
-                    .sort({ createdAt: -1 })
-                    .skip((page - 1) * ITEMS_PER_PAGE)
-                    .limit(ITEMS_PER_PAGE);
-
-                const totalItems = await User.countDocuments({ userType: "Client" });
-
-                res.status(200).json({
-                    clients,
-                    currentPage: +page,
-                    totalPages: Math.ceil(totalItems / ITEMS_PER_PAGE),
-                });
-            } catch (error) {
-                res.status(500).json({ status: false, message: error.message });
-            }
-        },
-
     verifyAccount: async (req, res) => {
         const userOtp = req.params.otp;
 
@@ -96,7 +72,7 @@ module.exports = {
                 .limit(ITEMS_PER_PAGE);
             const totalItems = await User.countDocuments({verification: req.query.status});
             res.status(200).json({
-                users: clients,
+                users,
                 currentPage: +page,
                 totalPages: Math.ceil(totalItems / ITEMS_PER_PAGE),
             });
