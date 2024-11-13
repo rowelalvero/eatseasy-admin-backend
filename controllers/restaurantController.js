@@ -79,7 +79,6 @@ module.exports = {
         }
     },
 
-
     searchRestaurants: async (req, res) => {
         const search = req.params.search;
 
@@ -180,5 +179,58 @@ module.exports = {
         }
     },
 
+    getTotalEarnings: async (req, res) => {
+            try {
+                // Aggregate all earnings from all restaurants
+                const earnings = await Restaurant.aggregate([
+                    {
+                        $group: {
+                            _id: null, // Grouping all records together
+                            totalEarnings: { $sum: "$earnings" } // Summing up the earnings
+                        }
+                    }
+                ]);
 
+                // If no earnings found, return a 0 total
+                const totalEarnings = earnings.length > 0 ? earnings[0].totalEarnings : 0;
+
+                // Calculate 10% of the total earnings
+                const tenPercent = totalEarnings * 0.10;
+
+                // Return the total earnings and 10% of it
+                res.status(200).json({
+                    totalEarnings,
+                    tenPercent
+                });
+            } catch (error) {
+                res.status(500).json({ status: false, message: error.message });
+            }
+        },
+
+    getSpecificVendorEarnings: async (req, res) => {
+            const id = req.params.id;
+            try {
+                // Find the restaurant by ID
+                const restaurant = await Restaurant.findById(id);
+
+                // If restaurant not found, return an error
+                if (!restaurant) {
+                    return res.status(404).json({ status: false, message: "Restaurant not found" });
+                }
+
+                // Retrieve the total earnings
+                const totalEarnings = restaurant.earnings;
+
+                // Calculate 10% of the total earnings
+                const tenPercent = totalEarnings * 0.10;
+
+                // Return the total earnings and 10% of it
+                res.status(200).json({
+                    totalEarnings,
+                    tenPercent
+                });
+            } catch (error) {
+                res.status(500).json({ status: false, message: error.message });
+            }
+        },
 }
