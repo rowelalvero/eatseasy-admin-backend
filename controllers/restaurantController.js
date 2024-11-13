@@ -107,8 +107,12 @@ module.exports = {
     changeStatus: async (req, res) => {
             const id = req.params.id;
             let status = req.query.status;
+
             try {
                 const restaurant = await Restaurant.findById(id);
+                if (!restaurant) {
+                  return res.status(404).json({ message: "Restaurant not found" });
+                }
                 restaurant.verification = status;
                 await restaurant.save();
 
