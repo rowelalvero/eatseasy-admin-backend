@@ -118,29 +118,26 @@ module.exports = {
                 const restaurantData = await User.findById(restaurant.owner, {fcm: 1, email: 1, username: 1});
 
                 if(restaurantData.email){
-                    if (restaurantData.fcm !== "none") {
-                        const data = {
-                            type: "verification",
-                            message: status === "Verified" ? "Your restaurant has been verified" : "Your restaurant has been rejected"
-                        };
+                    if(status == "Verified"){
+                         if(restaurantData.fcm != "none"){
+                             let data = {
+                                 "type": "verification",
+                                 "message": "Your restaurant has been verified"
+                             }
+                             await sendPushNotification(restaurantData.fcm, "Restaurant Verification","Your restaurant has been verified",data, "Your restaurant has been verified")
+                         }
+                        await sendMail(restaurantData.email, restaurantData.username);
+                    }
+                    else if (status == "Rejected"){
 
-                        const notificationMessage = status === "Verified"
-                            ? "Your restaurant has been verified"
-                            : "Your restaurant has been rejected";
-
-                        await sendPushNotification(
-                            restaurantData.fcm,
-                            notificationMessage,
-                            "Restaurant Verification",
-                            data
-                        );
-                        // Send email
-                        if (status === "Verified") {
-                            await sendEmail(restaurantData.email, restaurantData.username);
-                        } else if (status === "Rejected") {
-                            await rejectionEmail(restaurantData.email, restaurantData.username);
-                        }
-
+                         if(restaurantData.fcm != "none"){
+                             let data = {
+                                 "type": "verification",
+                                 "message": "Your restaurant has been verified"
+                             }
+                             await sendPushNotification(restaurantData.fcm, "Restaurant Verification","Your restaurant has been rejected",data, "Your restaurant has been rejected",)
+                         }
+                        await rejectionEmail(restaurantData.email, restaurantData.username);
                     }
 
                 }
