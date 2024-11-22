@@ -129,7 +129,7 @@ module.exports = {
                              sendPushNotification(restaurantData.fcm, "Restaurant Verification","Your restaurant has been verified",data, "Your restaurant has been verified")
                          }
                         sendMail(restaurantData.email, restaurantData.username);
-                    } else if (status = "Rejected"){
+                    } else if (status == "Rejected"){
 
                          if(restaurantData.fcm != "none"){
                              let data = {
@@ -147,7 +147,7 @@ module.exports = {
             } catch (error) {
                 res.status(500).json({ status: false, message: error.message });
             }
-        },
+    },
 
     deleteRestaurant: async (req, res) => {
         const id  = req.params;

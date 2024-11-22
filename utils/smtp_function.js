@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv').config();
 
-async function sendEmail(userEmail, name, otp){
+async function sendEmail(userEmail, name){
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -15,13 +15,13 @@ async function sendEmail(userEmail, name, otp){
         from: process.env.AUTH_EMAIL,
         to: userEmail,
         subject: "EatsEasy Admin Registration",
-        html: `<h2>Congratulations! Your EatsEasy Partner Admin Account Has Heen Registered</h2>
+        html: `<h2>Congratulations! Your EatsEasy Partner Admin Account Has Been Registered</h2>
 
         <p>Dear ${name},</p>
     
         <p>We are thrilled to inform you that your restaurant on EatsEasy has been successfully registered!</p>
     
-        <p>To complete verification please enter this otp ${otp} in the admin app</p>
+        //<p>To complete verification please enter this otp ${otp} in the admin app</p>
     
         <p>Thank you for choosing EatsEasy. We appreciate your commitment to providing accurate and up-to-date information for our users.</p>
     
