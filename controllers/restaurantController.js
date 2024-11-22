@@ -126,9 +126,9 @@ module.exports = {
                                  "type": "verification",
                                  "message": "Your restaurant has been verified"
                              }
-                             sendPushNotification(restaurantData.fcm, "Restaurant Verification","Your restaurant has been verified",data, "Your restaurant has been verified")
+                             await sendPushNotification(restaurantData.fcm, "Restaurant Verification","Your restaurant has been verified",data, "Your restaurant has been verified")
                          }
-                        sendMail(restaurantData.email, restaurantData.username);
+                        await sendMail(restaurantData.email, restaurantData.username);
                     } else if (status == "Rejected"){
 
                          if(restaurantData.fcm != "none"){
@@ -136,9 +136,9 @@ module.exports = {
                                  "type": "verification",
                                  "message": "Your restaurant has been verified"
                              }
-                             sendPushNotification(restaurantData.fcm, "Restaurant Verification","Your restaurant has been rejected",data, "Your restaurant has been rejected",)
+                             await sendPushNotification(restaurantData.fcm, "Restaurant Verification","Your restaurant has been rejected",data, "Your restaurant has been rejected",)
                          }
-                        rejectionEmail(restaurantData.email, restaurantData.username);
+                        await rejectionEmail(restaurantData.email, restaurantData.username);
                     }
 
                 }
