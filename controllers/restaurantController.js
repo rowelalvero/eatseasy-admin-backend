@@ -121,23 +121,23 @@ module.exports = {
 
                 if(restaurantData.email){
                     if(status == "Verified"){
-                        // if(restaurantData.fcm != "none"){
-                        //     let data = {
-                        //         "type": "verification",
-                        //         "message": "Your restaurant has been verified"
-                        //     }
-                        //     sendPushNotification(restaurantData.fcm, "Restaurant Verification","Your restaurant has been verified",data, "Your restaurant has been verified")
-                        // }
+                         if(restaurantData.fcm != "none"){
+                             let data = {
+                                 "type": "verification",
+                                 "message": "Your restaurant has been verified"
+                             }
+                             sendPushNotification(restaurantData.fcm, "Restaurant Verification","Your restaurant has been verified",data, "Your restaurant has been verified")
+                         }
                         sendMail(restaurantData.email, restaurantData.username);
-                    }else if (status = "Rejected"){
+                    } else if (status = "Rejected"){
 
-                        // if(restaurantData.fcm != "none"){
-                        //     let data = {
-                        //         "type": "verification",
-                        //         "message": "Your restaurant has been verified"
-                        //     }
-                        //     sendPushNotification(restaurantData.fcm, "Restaurant Verification","Your restaurant has been rejected",data, "Your restaurant has been rejected",)
-                        // }
+                         if(restaurantData.fcm != "none"){
+                             let data = {
+                                 "type": "verification",
+                                 "message": "Your restaurant has been verified"
+                             }
+                             sendPushNotification(restaurantData.fcm, "Restaurant Verification","Your restaurant has been rejected",data, "Your restaurant has been rejected",)
+                         }
                         rejectionEmail(restaurantData.email, restaurantData.username);
                     }
 
