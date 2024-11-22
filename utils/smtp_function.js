@@ -21,8 +21,6 @@ async function sendEmail(userEmail, name){
     
         <p>We are thrilled to inform you that your restaurant on EatsEasy has been successfully registered!</p>
     
-        //<p>To complete verification please enter this otp ${otp} in the admin app</p>
-    
         <p>Thank you for choosing EatsEasy. We appreciate your commitment to providing accurate and up-to-date information for our users.</p>
     
         <p>If you have any questions or need further assistance, please don't hesitate to contact our support team at [Your Support Email] or [Your Support Phone Number].</p>
