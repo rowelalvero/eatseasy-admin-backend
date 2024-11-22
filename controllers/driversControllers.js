@@ -75,13 +75,13 @@ module.exports = {
             const user = await User.findById(driver.driver, {email: 1, fcm: 1, username:1});
             
             if(user.email){
-                if(status == "Verified"){
+                if(status === "Verified"){
                     
-                    sendVerificationEmail(user.email, user.username);
-                }else if (status = "Rejected"){
+                    await sendVerificationEmail(user.email, user.username);
+                }else if (status === "Rejected"){
 
                    
-                    rejectionDriverEmail(user.email, user.username);
+                    await rejectionDriverEmail(user.email, user.username);
                 }
               
             }
