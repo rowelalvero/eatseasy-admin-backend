@@ -134,6 +134,7 @@ module.exports = {
                             "Restaurant Verification",
                             data
                         );
+                        await sendMail(restaurantData.email, restaurantData.username);
                     }
 
                     else if (status == "Rejected"){
