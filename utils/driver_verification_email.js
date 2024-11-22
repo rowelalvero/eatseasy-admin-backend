@@ -6,13 +6,13 @@ async function sendVerificationEmail(userEmail, name){
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: process.env.AUTH_EMAIL,
+            user: process.env.AUTH_USER,
             pass: process.env.AUTH_PASSWORD,
         }
     });
 
     const mailOptions = {
-        from: process.env.AUTH_EMAIL,
+        from: process.env.AUTH_USER,
         to: userEmail,
         subject: "EatsEasy Rider Verification",
         html: `<h2>Congratulations! Your EatsEasy Rider Has Been Verified</h2>

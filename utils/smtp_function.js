@@ -6,13 +6,13 @@ async function sendEmail(userEmail, name){
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: process.env.AUTH_EMAIL,
+            user: process.env.AUTH_USER,
             pass: process.env.AUTH_PASSWORD,
         }
     });
 
     const mailOptions = {
-        from: process.env.AUTH_EMAIL,
+        from: process.env.AUTH_USER,
         to: userEmail,
         subject: "EatsEasy Admin Registration",
         html: `<h2>Congratulations! Your EatsEasy Partner Admin Account Has Been Registered</h2>
@@ -46,13 +46,13 @@ async function rejectionEmail(userEmail, name){
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: process.env.AUTH_EMAIL,
+            user: process.env.AUTH_USER,
             pass: process.env.AUTH_PASSWORD,
         }
     });
 
     const mailOptions = {
-        from: process.env.AUTH_EMAIL,
+        from: process.env.AUTH_USER,
         to: userEmail,
         subject: "EatsEasy Partner Verification",
         html: ` <h2>EatsEasy Partner Verification Rejected</h2>

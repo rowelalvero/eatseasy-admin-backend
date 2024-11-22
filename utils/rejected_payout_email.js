@@ -6,13 +6,13 @@ async function rejectionRequestEmail(userEmail, name, reason){
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: process.env.AUTH_EMAIL,
+            user: process.env.AUTH_USER,
             pass: process.env.AUTH_PASSWORD,
         }
     });
 
     const mailOptions = {
-        from: process.env.AUTH_EMAIL,
+        from: process.env.AUTH_USER,
         to: userEmail,
         subject: "Your EatsEasy Payout Request Has Been Rejected",
         html: ` <h2>EatsEasy Payout Request</h2>

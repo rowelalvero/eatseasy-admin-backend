@@ -6,13 +6,13 @@ async function approvedRequestEmail(userEmail, name, id, date, amount) {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: process.env.AUTH_EMAIL,
+            user: process.env.AUTH_USER,
             pass: process.env.AUTH_PASSWORD,
         }
     });
 
     const mailOptions = {
-        from: process.env.AUTH_EMAIL,
+        from: process.env.AUTH_USER,
         to: userEmail,
         subject: "Your Payout Request Has Been Approved by EatsEasy",
         html: ` <h2>Congratulations! Your Request Has Been Approved</h2>
