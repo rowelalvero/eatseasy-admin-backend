@@ -134,28 +134,13 @@ module.exports = {
                             "Restaurant Verification",
                             data
                         );
-                        try {
-                            await sendMail(restaurantData.email, restaurantData.username);
-                        } catch (error) {
-                            console.error("Error sending verification email:", error.message);
+                        // Send email
+                        if (status === "Verified") {
+                            await sendEmail(restaurantData.email, restaurantData.username);
+                        } else if (status === "Rejected") {
+                            await rejectionEmail(restaurantData.email, restaurantData.username);
                         }
 
-                    }
-
-                    else if (status === "Rejected"){
-
-                         if(restaurantData.fcm != "none"){
-                             let data = {
-                                 "type": "verification",
-                                 "message": "Your restaurant has been verified"
-                             }
-                             await sendPushNotification(restaurantData.fcm, "Restaurant Verification","Your restaurant has been rejected",data, "Your restaurant has been rejected",)
-                         }
-                         try {
-                             await rejectionEmail(restaurantData.email, restaurantData.username);
-                         } catch (error) {
-                             console.error("Error sending rejection email:", error.message);
-                         }
                     }
 
                 }
