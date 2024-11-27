@@ -10,7 +10,7 @@ module.exports = {
 
     getRestaurants: async (req, res) => {
         const { page = 1, status } = req.query;
-        const ITEMS_PER_PAGE = req.query.limit || 5;
+        const ITEMS_PER_PAGE = req.query.limit || 6;
         try {
             let query = {};
             if (status) {
