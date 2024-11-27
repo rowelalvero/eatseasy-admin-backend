@@ -35,6 +35,46 @@ module.exports = {
             res.status(500).json({ status: false, message: error.message });
         }
     },
+
+    getRestaurantWithdrawalsStats: async (req, res) => {
+            const { restaurantId } = req.params;
+
+            try {
+                // Validate if the restaurant exists
+                const restaurant = await Restaurant.findById(restaurantId);
+                if (!restaurant) {
+                    return res.status(404).json({ status: false, message: "Restaurant not found" });
+                }
+
+                // Total number of withdrawals
+                const totalWithdrawals = await Payout.countDocuments({ restaurant: restaurantId });
+
+                // Pending withdrawals
+                const pendingWithdrawals = await Payout.countDocuments({
+                    restaurant: restaurantId,
+                    status: 'pending'
+                });
+
+                // Completed withdrawals
+                const completedWithdrawals = await Payout.countDocuments({
+                    restaurant: restaurantId,
+                    status: 'completed'
+                });
+
+                // Respond with the stats
+                res.status(200).json({
+                    status: true,
+                    message: 'Withdrawal stats retrieved successfully',
+                    data: {
+                        totalWithdrawals,
+                        pendingWithdrawals,
+                        completedWithdrawals
+                    }
+                });
+            } catch (error) {
+                res.status(500).json({ status: false, message: error.message });
+            }
+        },
     
     updatePayoutStatus: async (req, res) => {
         const id = req.query.id;
@@ -99,7 +139,6 @@ module.exports = {
             res.status(500).json({ status: false, message: error.message });
         }
     },
-
 
     deletePayout: async (req, res) => {
         const { id } = req.params;
