@@ -5,9 +5,9 @@ const constantController = require('../controllers/constantController');
 const {verifyAdmin} = require('../middleware/verifyToken');
 
 // GET: Retrieve the commissionRate and driverBaseRate
-router.get('/constants', constantsController.getConstants);
+router.get('/', constantsController.getConstants);
 
 // PUT: Update the commissionRate and driverBaseRate
-router.put('/constants', verifyAdmin, constantsController.updateConstants);
+router.put('/', verifyAdmin, constantsController.updateConstants);
 
 module.exports = router;
