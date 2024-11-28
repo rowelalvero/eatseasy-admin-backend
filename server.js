@@ -13,6 +13,7 @@ const OrderRoute = require("./routes/order");
 const PayoutRoute = require("./routes/payouts");
 const DriverRoute = require("./routes/drivers");
 const FeedBackRoute = require("./routes/feedback");
+const constantsRoutes = require('./routes/constants');
 const { fireBaseConnection } = require('./utils/fbConnect');
 
 dotenv.config();
@@ -44,6 +45,7 @@ app.use("/api/address", AddressRoute);
 app.use("/api/orders", OrderRoute);
 app.use("/api/payouts", PayoutRoute);
 app.use("/api/drivers", DriverRoute);
+app.use('/api/constants', constantsRoutes);
 app.use("/api/feedbacks", FeedBackRoute);
 
 // Optional error handling middleware
