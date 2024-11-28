@@ -9,6 +9,5 @@ router.get("/", restaurantController.getRestaurants);
 router.delete("/:id", restaurantController.deleteRestaurant);
 router.put("/status/:id",verifyAdmin, restaurantController.changeStatus);
 router.get("/total-earnings", restaurantController.getTotalEarnings);
-router.get("/getEarningsByTimeRange", restaurantController.getEarningsByTimeRange);
 
 module.exports = router;
