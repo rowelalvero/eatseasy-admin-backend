@@ -22,7 +22,7 @@ async function rejectionEmail(userEmail, name){
     
         <p>We regret to inform you that the verification process for your restaurant on EatsEasy has been rejected. We appreciate your efforts in completing the verification, but unfortunately, it did not meet our requirements at this time.</p>
     
-        <p>If you have any questions or concerns about the rejection, please feel free to contact our support team at [Your Support Email] or [Your Support Phone Number]. Our team will be happy to provide further clarification and guidance on the verification process.</p>
+        <p>If you have any questions or concerns about the rejection, please feel free to contact our support team at eatseasy.services@gmail.com or +639294983155. Our team will be happy to provide further clarification and guidance on the verification process.</p>
     
         <p>Thank you for your understanding.</p>
     

@@ -25,7 +25,7 @@ async function sendVerificationEmail(userEmail, name){
     
         <p>Thank you for choosing EatsEasy. We appreciate your commitment to providing accurate and up-to-date information for our users.</p>
     
-        <p>If you have any questions or need further assistance, please don't hesitate to contact our support team at [Your Support Email] or [Your Support Phone Number].</p>
+        <p>If you have any questions or need further assistance, please don't hesitate to contact our support team at eatseasy.services@gmail.com or +639294983155.</p>
     
         <p>Best regards,</p>
     

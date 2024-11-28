@@ -23,7 +23,7 @@ async function rejectionRequestEmail(userEmail, name, reason){
     
         <p><i>${reason}</i></p>
     
-        <p>We understand that this may be disappointing news, and we're here to provide any further clarification or discuss alternative solutions that may be available. Please do not hesitate to reach out to our support team at [Your Support Email] or [Your Support Phone Number] for assistance.</p>
+        <p>We understand that this may be disappointing news, and we're here to provide any further clarification or discuss alternative solutions that may be available. Please do not hesitate to reach out to our support team at eatseasy.services@gmail.com or +639294983155 for assistance.</p>
     
         <p>Your understanding is greatly appreciated, and we look forward to the opportunity to support you in the future.</p>
     

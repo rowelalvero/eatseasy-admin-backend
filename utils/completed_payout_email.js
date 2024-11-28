@@ -21,7 +21,7 @@ async function approvedRequestEmail(userEmail, name, id, date, amount) {
     
         <p>We are thrilled to inform you that your recent payout request <strong>${id}</strong> of <strong>${amount} </strong> made on ${date} with EatsEasy has been approved! This marks a significant step, and we're excited to move forward with you.</p>
     
-        <p>Should you have any questions or require further assistance, please feel free to reach out to our support team at [Your Support Email] or [Your Support Phone Number]. We're here to support you every step of the way.</p>
+        <p>Should you have any questions or require further assistance, please feel free to reach out to our support team at eatseasy.services@gmail.com or +639294983155. We're here to support you every step of the way.</p>
     
         <p>Thank you for choosing EatsEasy. We look forward to continuing to work together.</p>
     
