@@ -209,48 +209,6 @@ module.exports = {
         }
     },
 
-    getEarningsByTimeRange: async (req, res) => {
-        const timeRange = req.query.timeRange || 'daily';  // Default to daily
-        let filter = {};
-
-        // Define filters based on the time range
-        if (timeRange === 'daily') {
-            // Filter for daily data
-            filter = { date: { $gte: new Date(new Date().setHours(0, 0, 0, 0)) } };  // Today
-        } else if (timeRange === 'weekly') {
-            // Filter for weekly data (last 7 days)
-            filter = { date: { $gte: new Date(new Date() - 7 * 24 * 60 * 60 * 1000) } };
-        } else if (timeRange === 'monthly') {
-            // Filter for monthly data
-            filter = { date: { $gte: new Date(new Date().setMonth(new Date().getMonth() - 1)) } };
-        } else if (timeRange === 'yearly') {
-            // Filter for yearly data
-            filter = { date: { $gte: new Date(new Date().setFullYear(new Date().getFullYear() - 1)) } };
-        }
-
-        try {
-            const earnings = await EarningsModel.aggregate([
-                { $match: filter },
-                { $group: { _id: { $dateToString: { format: "%Y-%m-%d", date: "$date" } }, total: { $sum: "$earnings" } } },
-                { $sort: { _id: 1 } }
-            ]);
-
-            console.log("Earnings Data:", earnings);  // Debugging line
-
-            const chartData = earnings.map(item => ({
-                x: new Date(item._id).getTime() / 1000,  // Convert date to timestamp (seconds)
-                y: item.total
-            }));
-
-            res.status(200).json(chartData);
-        } catch (error) {
-            console.error("Error fetching earnings:", error);  // Log the error
-            res.status(500).json({ status: false, message: error.message });
-        }
-
-    },
-
-
     getSpecificVendorEarnings: async (req, res) => {
             const id = req.params.id;
             try {
