@@ -229,23 +229,25 @@ module.exports = {
         }
 
         try {
-            // Aggregate earnings data based on the time range filter
             const earnings = await EarningsModel.aggregate([
                 { $match: filter },
                 { $group: { _id: { $dateToString: { format: "%Y-%m-%d", date: "$date" } }, total: { $sum: "$earnings" } } },
                 { $sort: { _id: 1 } }
             ]);
 
-            // Map the results to return in a chart-friendly format
+            console.log("Earnings Data:", earnings);  // Debugging line
+
             const chartData = earnings.map(item => ({
-                x: new Date(item._id).getTime().toDouble() / 1000,  // Convert date to timestamp
+                x: new Date(item._id).getTime() / 1000,  // Convert date to timestamp (seconds)
                 y: item.total
             }));
 
             res.status(200).json(chartData);
         } catch (error) {
+            console.error("Error fetching earnings:", error);  // Log the error
             res.status(500).json({ status: false, message: error.message });
         }
+
     },
 
 
