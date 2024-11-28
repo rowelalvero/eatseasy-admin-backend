@@ -179,32 +179,35 @@ module.exports = {
     },
 
     getTotalEarnings: async (req, res) => {
-            try {
-                // Aggregate all earnings from all restaurants
-                const earnings = await Restaurant.aggregate([
-                    {
-                        $group: {
-                            _id: null, // Grouping all records together
-                            totalEarnings: { $sum: "$earnings" } // Summing up the earnings
-                        }
+        try {
+            // Extract the commissionRate from the request query or body (default to 10% if not provided)
+            const commissionRate = req.query.commissionRate || req.body.commissionRate || 0.10;  // Default to 10% if not provided
+
+            // Aggregate all earnings from all restaurants
+            const earnings = await Restaurant.aggregate([
+                {
+                    $group: {
+                        _id: null, // Grouping all records together
+                        totalEarnings: { $sum: "$earnings" } // Summing up the earnings
                     }
-                ]);
+                }
+            ]);
 
-                // If no earnings found, return a 0 total
-                const totalEarnings = earnings.length > 0 ? earnings[0].totalEarnings : 0;
+            // If no earnings found, return a 0 total
+            const totalEarnings = earnings.length > 0 ? earnings[0].totalEarnings : 0;
 
-                // Calculate 10% of the total earnings
-                const tenPercent = totalEarnings * 0.10;
+            // Calculate the commission based on the provided commissionRate
+            const commission = totalEarnings * commissionRate;
 
-                // Return the total earnings and 10% of it
-                res.status(200).json({
-                    totalEarnings,
-                    tenPercent
-                });
-            } catch (error) {
-                res.status(500).json({ status: false, message: error.message });
-            }
-        },
+            // Return the total earnings and commission
+            res.status(200).json({
+                totalEarnings,
+                commission
+            });
+        } catch (error) {
+            res.status(500).json({ status: false, message: error.message });
+        }
+    },
 
     getSpecificVendorEarnings: async (req, res) => {
             const id = req.params.id;
