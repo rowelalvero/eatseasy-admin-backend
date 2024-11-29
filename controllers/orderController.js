@@ -19,7 +19,7 @@ module.exports = {
 
     getUserOrders: async (req, res) => {
         const page  = req.query.page || 1;
-        const ITEMS_PER_PAGE = req.query.limit || 5;
+        const ITEMS_PER_PAGE = req.query.limit || 1000;
         try {
             const orders = await Order.find({ orderStatus: req.query.orderStatus })
                 .populate({

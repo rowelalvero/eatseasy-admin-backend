@@ -15,7 +15,7 @@ module.exports = {
     getAllCategories: async (req, res) => {
         console.log(req.query);
         const page   = req.query.page || 1;
-        const ITEMS_PER_PAGE = req.query.limit || 8;
+        const ITEMS_PER_PAGE = req.query.limit || 1000;
         try {
             const categories = await Category.find({ title: { $ne: "More" } }, { __v: 0, createdAt: 0, updatedAt: 0})
                 .sort({ createdAt: -1 })

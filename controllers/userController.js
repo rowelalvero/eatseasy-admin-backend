@@ -64,7 +64,7 @@ module.exports = {
 
     getUsers: async (req, res) => {
         const { page = 1 } = req.query;
-        const ITEMS_PER_PAGE = req.query.limit || 8;
+        const ITEMS_PER_PAGE = req.query.limit || 1000;
         try {
             const users = await User.find({verification: req.query.status}, { __v: 0, createdAt: 0, updatedAt: 0, password: 0 })
                 .sort({ createdAt: -1 })

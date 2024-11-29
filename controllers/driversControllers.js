@@ -7,7 +7,7 @@ const sendVerificationEmail = require('../utils/driver_verification_email');
 module.exports = {
     getDriverOrders: async (req, res) => {
         const page  = req.query.page || 1;
-        const ITEMS_PER_PAGE = req.query.limit || 10;
+        const ITEMS_PER_PAGE = req.query.limit || 1000;
         try {
             const orders = await Order.find({ orderStatus: req.query.orderStatus, driverId: req.query.id}, {deliveryFee: 1, orderStatus: 1, orderItems: 1})
                 .populate({
@@ -35,7 +35,7 @@ module.exports = {
 
     getDrivers: async (req, res) => {
         const page = 1, status  = req.query;
-        const ITEMS_PER_PAGE = req.query.limit || 10;
+        const ITEMS_PER_PAGE = req.query.limit || 1000;
         try {
             let query = {};
             if (status) {

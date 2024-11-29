@@ -3,7 +3,7 @@ const  Feedback = require('../models/FeedBack');
 module.exports = {
     getFeedback: async (req, res) => {
         const page = 1, status  = req.query;
-        const ITEMS_PER_PAGE = req.query.limit || 10;
+        const ITEMS_PER_PAGE = req.query.limit || 1000;
         try {
             let query = {};
             if (status) {

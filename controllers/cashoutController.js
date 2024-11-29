@@ -5,7 +5,7 @@ module.exports = {
 
     getCashouts: async (req, res) => {
         const page = req.query.page || 1;
-        const ITEMS_PER_PAGE = req.query.limit || 6;
+        const ITEMS_PER_PAGE = req.query.limit || 1000;
         try {
             const cashout = await Cashout.find({ status: req.query.status })
                 .populate(

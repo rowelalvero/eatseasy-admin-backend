@@ -5,7 +5,7 @@ module.exports = {
 
     getFoods: async (req, res) => {
         const page   = req.query.page || 1;
-        const ITEMS_PER_PAGE = req.query.limit || 5;
+        const ITEMS_PER_PAGE = req.query.limit || 1000;
         try {
             const foods = await Food.find({ isAvailable: req.query.status }, { __v: 0, createdAt: 0, updatedAt: 0})
                 .sort({ createdAt: -1 })
